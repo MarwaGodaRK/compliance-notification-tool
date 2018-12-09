@@ -42,6 +42,6 @@ You should kick off the jar from root for security tokens.
 
     java -jar target/compliance-notification-tool-0.0.1-SNAPSHOT.jar
 
-## Google API Authorization
+## API Authorization
 The first time you run the application it will require login to retrieve dashboard and team activities from APIs
 Team and manager IDs and authorization token will be stored in mongoDB so that the scheduler will be able to retrieve team activities
