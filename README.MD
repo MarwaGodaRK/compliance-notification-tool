@@ -26,7 +26,7 @@ Following are the rules that requires configurations from manage
 
  <li>Notify IC if (s)he tracked 4 hours but has focus less than : value </li>
 </ul>
-## Templates
+### Templates
 Thymeleaf has been used as template engine. Templates should be prepared as html file using thymeleaf syntax.
 
 Template files can be found in <b>resources/templates/mail</b> folder.
