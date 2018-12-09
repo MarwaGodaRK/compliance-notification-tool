@@ -46,7 +46,7 @@ public class ScheduledTasks {
     @Autowired
     ActivityService activityService;
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 */3 * * *")
     public void reportNonCompliantICs() {
         fetch();
     }
