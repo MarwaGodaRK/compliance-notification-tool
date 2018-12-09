@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome to Crossover daily compliance reminder tool</title>
+</head>
+<body>
+	<h2>Welcome to Crossover daily compliance reminder tool</h2>
+<!--	<div sec:authorize="hasRole('USER')">Text visible to user.</div>
+	<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>-->
+
+	<br/><br/>
+<p>Please configure the following compliance rules for your team:</p>
+<ul>
+	<form th:action="@{/configureRules}" th:object="${complianceRules}" method="post" >
+		<li><p><label >Maximum stop per day is:</label>
+		<select th:field="*{stopsCount}">
+		<option
+				th:each="dropdownValue: ${stops}"
+				th:value="${dropdownValue}"
+				th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li><p><label >Notify IC if (s)he didn’t track 4 hours today and the time is: </label>
+		<select th:field="*{maximumAllowedTimeToStartWork}">
+			<option
+					th:each="dropdownValue: ${hours}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li>
+		<p><label >Notify IC if (s)he must start work to track minimum allowed hours which is: </label>
+		<select th:field="*{minimumDailyAllowedHours}">
+			<option
+					th:each="dropdownValue: ${hours}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li>
+		<p><label >Notify IC if (s)he tracked 4 hours but has more than allowed percentage of time categorized as other: </label>
+		<select th:field="*{maximumAllowedOtherPercentage}">
+			<option
+					th:each="dropdownValue: ${percentages}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li>
+		<p><label >Notify IC if (s)he tracked 4 hours but has more than allowed percentage of time categorized as Distraction: </label>
+		<select th:field="*{maximumAllowedDistractionPercentage}">
+			<option
+					th:each="dropdownValue: ${percentages}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li>
+		<p><label >Notify IC if (s)he tracked 4 hours but has development time less than : </label>
+		<select th:field="*{developmentPercentage}">
+			<option
+					th:each="dropdownValue: ${percentages}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li>
+		<p><label >Notify IC if (s)he tracked 4 hours but has intensity less than : </label>
+		<select th:field="*{intensityPercentage}">
+			<option
+					th:each="dropdownValue: ${percentages}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<li>
+		<p><label >Notify IC if (s)he tracked 4 hours but has focus less than : </label>
+		<select th:field="*{focusPercentage}">
+			<option
+					th:each="dropdownValue: ${percentages}"
+					th:value="${dropdownValue}"
+					th:text="${dropdownValue}" ></option>
+		</select></p>
+		</li>
+		<p><input type="submit" value="Submit" /></p>
+	</form>
+</ul>
+	<!--<form action="#" th:action="@{/configureRules}" th:object="${complianceRules}" method="post">
+		<p>Id: <input type="text" th:field="*{id}" /></p>
+		<p>Message: <input type="text" th:field="*{content}" /></p>
+		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+	</form>-->
+</body>
+</html>

@@ -1,0 +1,9 @@
+package com.crossover.compliance.model;
+
+public enum  ComplianceTypes {
+
+    STOPS_COUNT, ALLOWED_TIME_TO_START_WORK,
+    DAILY_MIN_HOURS, MAX_OTHER_PERCENTAGE,
+    MAX_DISTRACTION_PERCENTAGE, DEV_PERCENTAGE,
+    INTENSITY_PERCENTAGE, FOCUS_PERCENTAGE;
+}

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>error Page</title>
+</head>
+<body>
+<h2>Error</h2>
+<div th:if="${exception != null}"
+     th:utext="'Exception: ' + ${exception.message}" th:remove="tag">
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Daily Compliance reminder</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- use the font -->
+    <style>
+        body {
+            color: #000;
+            font-family: 'Roboto', sans-serif;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+<table>
+<tr style="margin: 0; padding: 0;">
+
+<tr align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+
+    <tr>
+        <td bgcolor="#eaeaea" style="padding: 10px 10px 10px 10px;">
+            <p th:text="'Hello ' + ${Manager.firstName} + ','">Hello ${Manager.firstName}, </p>
+            <p> Please note that the following ICs may lose compliance metrics today:</p>
+
+    <tr th:each="complianceObject:${data}">
+        <td>
+            <span th:text="${complianceObject.candidate.printableName}"></span>
+            <ul th:each="complianceMetric:${complianceObject.icComplianceList}">
+                <li  th:if="${complianceMetric.complianceType.toString() == 'STOPS_COUNT'}">
+                    <p  th:text="${'has made ' + complianceMetric.actualValue + ' stops and maximum daily stops is '+ complianceMetric.expectedValue}">num</p>
+                </li>
+                <li   th:if="${complianceMetric.complianceType.toString() == 'ALLOWED_TIME_TO_START_WORK'}">
+                    <p th:text="${'has tracked' +  complianceMetric.actualValue + 'and time to start work is' + complianceMetric.expectedValue}">num</p>
+                </li>
+                <li  th:if="${complianceMetric.complianceType.toString() == 'DAILY_MIN_HOURS'}">
+                    <p th:text="${'has tracked' + complianceMetric.actualValue + 'and minimum daily hours is' + complianceMetric.expectedValue}">num</p>
+                </li>
+                <li  th:if="${complianceMetric.complianceType.toString() == 'MAX_OTHER_PERCENTAGE'}">
+                    <p th:text="${'has tracked >=4 hours but ' + complianceMetric.actualValue +'% of time categorized as other and maximum percentage is ' + complianceMetric.expectedValue}">num</p>
+                </li>
+                <li  th:if="${complianceMetric.complianceType.toString() == 'MAX_DISTRACTION_PERCENTAGE'}">
+                    <p th:text="${'has tracked >=4 hours but ' + complianceMetric.actualValue + '% of time categorized as distraction and maximum percentage is ' + complianceMetric.expectedValue}">num</p>
+                </li>
+                <li  th:if="${complianceMetric.complianceType.toString() == 'DEV_PERCENTAGE'}">
+                    <p th:text="${'has tracked >=4 hours but ' + complianceMetric.actualValue +'% of time categorized as development and minimum percentage is ' + complianceMetric.expectedValue}">num</p>
+                </li>
+                <li  th:if="${complianceMetric.complianceType.toString() == 'INTENSITY_PERCENTAGE'}">
+                    <p th:text="${'has tracked 4 hours but intensity is ' + complianceMetric.actualValue + '% and expected percentage is ' + complianceMetric.expectedValue}">num</p>
+                </li>
+                <li  th:if="${complianceMetric.complianceType.toString() == 'FOCUS_PERCENTAGE'}">
+                    <p th:text="${'has tracked 4 hours but focus is ' + complianceMetric.actualValue + '% and expected percentage is ' + complianceMetric.expectedValue}">num</p>
+                </li>
+            </ul>
+        </td>
+    </tr>
+  <!--  <div th:each="instance : ${data}">
+    <tr>
+    <td th:text="${instance.candidate.printableName} + ':'" ></td>
+<tr>
+<tr th:each="complianceInstance : ${instance.icComplianceList}">
+
+            <tr  th:if="${ complianceInstance.complianceType == 'STOPS_COUNT'}">
+               <td  th:text=" 'has made'+ ${complianceInstance.actualValue}+' and maximum daily stops is'+ ${complianceInstance.expectedValue}">num</td>
+            </tr>
+       <tr   th:if="${ complianceInstance.complianceType == 'ALLOWED_TIME_TO_START_WORK'}">
+    <td th:text=" has tracked ${complianceInstance.actualValue} and time to start work is ${complianceInstance.expectedValue}">num</td>
+       </tr>
+
+        <tr  th:if="${ complianceInstance.complianceType == 'DAILY_MIN_HOURS'}">
+         <td th:text=" has tracked ${complianceInstance.actualValue} and minimum daily hours is ${complianceInstance.expectedValue}">num</td>
+    </tr>
+        <tr  th:if="${ complianceInstance.complianceType == 'MAX_OTHER_PERCENTAGE'}">
+         <td th:text=" has tracked 4 hours but ${complianceInstance.actualValue}% of time categorized as other and maximum percentage is ${complianceInstance.expectedValue}">num</td>
+</tr>
+        <tr  th:if="${ complianceInstance.complianceType == 'MAX_DISTRACTION_PERCENTAGE'}">
+         <td th:text=" has tracked 4 hours but ${complianceInstance.actualValue}% of time categorized as distraction and maximum percentage is ${complianceInstance.expectedValue}">num</td>
+</tr>
+        <tr  th:if="${ complianceInstance.complianceType == 'DEV_PERCENTAGE'}">
+         <td th:text=" has tracked 4 hours but ${complianceInstance.actualValue}% of time categorized as development and minimum percentage is ${complianceInstance.expectedValue}">num</td>
+</tr>
+        <tr  th:if="${ complianceInstance.complianceType == 'INTENSITY_PERCENTAGE'}">
+         <td th:text=" has tracked 4 hours but intensity is ${complianceInstance.actualValue}% and expected percentage is ${complianceInstance.expectedValue}">num</td>
+</tr>
+        <tr  th:if="${ complianceInstance.complianceType == 'FOCUS_PERCENTAGE'}">
+         <td th:text=" has tracked 4 hours but focus is ${complianceInstance.actualValue}% and expected percentage is ${complianceInstance.expectedValue}">num</td>
+</tr>
+
+    </div>-->
+
+
+            <p>Thank you!</p>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
