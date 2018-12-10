@@ -1,5 +1,5 @@
 # compliance-notification-tool
-This tool has been developed for bootcamp hackaton  
+This tool has been developed for bootcamp hackathon  
 
 <b>Compliance notification tool</b> This tool can be used to notify manager if one or more of his team will not
 meet compliance metrics today. Manager can configure rules thresholds from UI
